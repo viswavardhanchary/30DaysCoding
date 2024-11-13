@@ -1,0 +1,41 @@
+Question:-
+
+Given two singly linked lists, return the point where two linked lists intersect.
+
+Note: If the linked lists do not merge at any point, return -1.
+
+
+Solution:-
+
+  class Intersect {
+    // Function to find intersection point in Y shaped Linked Lists.
+    int find(Node head1 , Node head2 , int length) {
+        int i=0;
+        while(head1!=null) {
+            if(i<=length-1) {
+                if(head1 == head2) return head1.data;
+                head2 = head2.next;
+            }
+            i++;
+            head1 = head1.next;
+        }
+        return -1;
+    }
+    int intersectPoint(Node head1, Node head2) {
+        // code here
+        int length=0,len=0;
+        Node blen = head2;
+        Node alen = head1;
+        while(alen!=null) {
+            len++;
+            alen= alen.next;
+        }
+        while(blen!=null) {
+            length++;
+            blen= blen.next;
+        }
+        if(len < 2 || length < 2) return -1;
+        if(len > length) return find(head1 , head2 , length);
+        else return find(head2 , head1 , len);
+    }
+}
