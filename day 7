@@ -1,0 +1,37 @@
+Question:-
+
+Given an unsorted array arr[]. Rotate the array to the left (counter-clockwise direction) by d steps, where d is a positive integer. Do the mentioned change in the array in place.
+Note: Consider the array as cirular.
+
+Solution:-
+
+class Solution {
+    // Function to rotate an array by d elements in counter-clockwise direction.
+    static void rotateArr(int arr[], int d) {
+        // add your code here
+        int rem = d;
+        if(d>=arr.length) {
+            rem = d%arr.length;
+        }
+        if(rem == 0) return ;
+        int a [] = new int[rem];
+        int j=0;
+        for(;j<rem;j++) {
+            a[j] = arr[j];
+        }
+        int i=0;
+        while(j<arr.length) {
+            arr[i] = arr[j];
+            i++;
+            j++;
+        }
+        int  k=0;
+        while(i<arr.length) {
+            arr[i] = a[k];
+            i++;
+            k++;
+        }
+        
+        
+    }
+}
