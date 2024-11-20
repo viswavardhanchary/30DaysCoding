@@ -1,0 +1,32 @@
+Question:-
+
+You are given an array of integer arr[] where each number represents a vote to a candidate. Return the candidates that have votes greater than one-third of the total votes, If there's not a majority vote, return an empty array. 
+
+Note: The answer should be returned in an increasing format.
+
+
+Solution:-
+
+class Solution {
+    // Function to find the majority elements in the array
+    public List<Integer> findMajority(int[] nums) {
+        // Your code goes here.
+        ArrayList<Integer> a = new ArrayList<>();
+        int total = nums.length/3;
+        Arrays.sort(nums);
+        int count = 1;
+        for(int i=1;i<nums.length;i++) {
+            if(nums[i] == nums[i-1]) {
+                count++;
+            }else {
+                if(count > total) a.add(nums[i-1]);
+                count = 1;
+            }
+        }
+        if(count > total) {
+            a.add(nums[nums.length-1]);
+        }
+        return a;
+        
+    }
+}
