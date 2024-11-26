@@ -1,0 +1,30 @@
+Question:-
+
+Given an array of integers arr[] in a circular fashion. Find the maximum subarray sum that we can get if we assume the array to be circular.
+
+Solution:-
+
+class Solution {
+
+    // a: input array
+    // n: size of array
+    // Function to find maximum circular subarray sum.
+    public int circularSubarraySum(int arr[]) {
+
+        // Your code here
+        int minSum = 0;
+        int min = arr[0];
+        int maxSum = 0;
+        int max = arr[0];
+        int total = 0;
+        for(int i=0;i<arr.length;i++) {
+            minSum = Math.min(minSum+arr[i] , arr[i]);
+            maxSum = Math.max(maxSum+arr[i] , arr[i]);
+            max = Math.max(max , maxSum);
+            min = Math.min(min , minSum);
+            total += arr[i];
+        }
+        if(max < 0) return max;
+        return Math.max(max , total - min);
+    }
+}
