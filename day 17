@@ -1,0 +1,45 @@
+Question:-
+
+Given a string s, the objective is to convert it into integer format without utilizing any built-in functions. Refer the below steps to know about atoi() function.
+Cases for atoi() conversion:
+Skip any leading whitespaces.
+Check for a sign (‘+’ or ‘-‘), default to positive if no sign is present.
+Read the integer by ignoring leading zeros until a non-digit character is encountered or end of the string is reached. If no digits are present, return 0.
+If the integer is greater than 231 – 1, then return 231 – 1 and if the integer is smaller than -231, then return -231.
+
+Solution:-
+
+class Solution {
+    public int myAtoi(String s) {
+        //Your code here
+        long sum = 0;
+        boolean noDigit = false;
+        boolean minus = false;
+        int i=0;
+        while(i<s.length()) {
+            if(s.charAt(i) != ' ' && noDigit == false && s.charAt(i) != '-' && ((s.charAt(i) < '0' || s.charAt(i) > '9'))) break;
+            if((s.charAt(i) < '0' || s.charAt(i) > '9') && noDigit == true) {
+                break;
+            }
+            if(s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+                noDigit = true;
+            }
+            if(s.charAt(i) == '-') {
+                if(minus == false) {
+                    minus = true;
+                }else {
+                    break;
+                }
+            }
+            if(noDigit) {
+                sum = sum*10 + (s.charAt(i) - '0');
+            }
+            i++;
+        }
+        if(noDigit == false) return 0;
+        if(minus == true) sum = -sum;
+        if(sum >= 0 && sum >= Integer.MAX_VALUE) return Integer.MAX_VALUE;
+        if(sum <= 0 && sum <= Integer.MIN_VALUE) return Integer.MIN_VALUE;
+        return (int)sum;
+    }
+}
