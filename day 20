@@ -1,0 +1,21 @@
+Question:-
+
+Given a string s consisting of lowercase Latin Letters. Return the first non-repeating character in s. If there is no non-repeating character, return '$'.
+Note: When you return '$' driver code will output -1.
+
+Solution:-
+
+class Solution {
+    // Function to find the first non-repeating character in a string.
+    static char nonRepeatingChar(String s) {
+        // Your code here
+        char freq[] = new char[26];
+        for(int i=0;i<s.length();i++) {
+            freq[s.charAt(i) - 97]++;
+        }
+        for(int i=0;i<s.length();i++) {
+            if(freq[s.charAt(i)-97] == 1) return s.charAt(i);
+        }
+        return '$';
+        }
+}
