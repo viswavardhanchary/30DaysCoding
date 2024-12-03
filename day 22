@@ -1,0 +1,44 @@
+Question:-
+
+Given a string s, the task is to find the minimum characters to be added at the front to make the string palindrome.
+Note: A palindrome string is a sequence of characters that reads the same forward and backward.
+
+  Solution:-
+
+    class Solution {
+    public static int[] kmp(String a) {
+        int[] b = new int[a.length()];
+        int i=1;
+        int  len= 0;
+        while(i<a.length()) {
+            if(a.charAt(i) == a.charAt(len)) {
+                b[i++] = ++len;
+            }else {
+                if(len!=0) {
+                    len = b[len-1];
+                }else {
+                    b[i++] = 0; 
+                }
+            }
+        }
+        return b;
+    }
+    public static String reverse(String b) {
+        int  i=0;
+        int j = b.length()-1;
+        char a[] = b.toCharArray();
+        while(i<j) {
+            char temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+            i++;
+            j--;
+        }
+        return String.valueOf(a);
+    }
+    public static int minChar(String s) {
+        // Write your code here
+        int b[] = kmp((s+'$').concat(reverse(s)));
+        return s.length()- b[b.length-1];
+    }
+}
