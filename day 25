@@ -1,0 +1,20 @@
+Question:-
+
+Given an integer array citations[], where citations[i] is the number of citations a researcher received for the ith paper. The task is to find the H-index.
+H-Index is the largest value such that the researcher has at least H papers that have been cited at least H times.
+
+Solution:-
+
+class Solution {
+    // Function to find hIndex
+    public int hIndex(int[] citations) {
+        // code here
+        Arrays.sort(citations);
+        int n = citations.length;
+        int Hcount = 0;
+        while(Hcount < n && citations[n-1-Hcount]>Hcount){
+            Hcount++;
+        }
+        return Hcount;
+    }
+}
