@@ -1,0 +1,35 @@
+Question:-
+
+Given an array of Intervals arr[][], where arr[i] = [starti, endi]. The task is to merge all of the overlapping Intervals.
+
+
+Solution:-
+
+
+
+class Solution {
+    public List<int[]> mergeOverlap(int[][] arr) {
+        // Code here // Code here
+        ArrayList<int[]> a = new ArrayList<>();
+        Arrays.sort(arr , new Comparator<int[]>() {
+            public int compare(int[]a , int []b) {
+                return a[0] - b[0];
+            }
+        });
+        int start = arr[0][0];
+        int end = arr[0][1];
+        for(int i=1;i<arr.length;i++) {
+            if(start <= arr[i][0] && end >= arr[i][0]) {
+                if(end < arr[i][1]) end = arr[i][1];
+            }else {
+                int[] b = {start , end};
+                a.add(b);
+                start = arr[i][0];
+                end = arr[i][1];
+            }
+        }
+        int[] c = {start , end};
+        a.add(c);
+        return a;
+    }
+}
