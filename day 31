@@ -1,0 +1,16 @@
+Question:-
+
+A sorted array of distinct elements arr[] is rotated at some unknown point, the task is to find the minimum element in it. 
+
+Solution:-
+
+class Solution {
+    public int findMin(int[] arr) {
+        // complete the function here
+        int min = Integer.MAX_VALUE;
+        for(int i=0;i<arr.length;i++) {
+            if(min > arr[i]) min = arr[i];
+        }
+        return min;
+    }
+}
