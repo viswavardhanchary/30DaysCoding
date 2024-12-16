@@ -1,0 +1,35 @@
+Question:-
+
+Given two sorted arrays a[] and b[] and an element k, the task is to find the element that would be at the kth position of the combined sorted array.
+
+Solution:-
+
+
+
+// User function Template for Java
+
+class Solution {
+    public int kthElement(int a[], int b[], int k) {
+        // code here
+        int i=a.length-1;
+        int j=0;
+        
+        while(i>=0 && j<b.length) {
+            if(a[i] > b[j]) {
+                int temp = a[i];
+                a[i] = b[j];
+                b[j] = temp;
+                i--;
+                j++;
+                
+            }else {
+                break;
+            }
+        }
+        
+        Arrays.sort(a);
+        Arrays.sort(b);
+        
+        return k-1>=a.length?b[k-a.length-1]:a[k-1];
+    }
+}
