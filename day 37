@@ -1,0 +1,24 @@
+Question:-
+
+Given a sorted array of distinct positive integers arr[], we need to find the kth positive number that is missing from arr[].  
+
+
+Solution:-
+
+class Solution {
+    public int kthMissing(int[] arr, int k) {
+        // code here
+        int i=1;
+        int j=0;
+        while(k>0) {
+            if(j<arr.length && i==arr[j]) {
+                i++;
+                j++;
+            }else {
+                i++;
+                k--;
+            }
+        }
+        return i-1;
+    }
+}
