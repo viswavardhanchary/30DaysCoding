@@ -1,0 +1,44 @@
+Question:-
+
+You are given a rectangular matrix mat[][] of size n x m, and your task is to return an array while traversing the matrix in spiral form.
+
+Solution:-
+
+
+
+class Solution {
+    // Function to return a list of integers denoting spiral traversal of matrix.
+    public ArrayList<Integer> spirallyTraverse(int mat[][]) {
+        // code here
+        int n=mat.length,m=mat[0].length;
+        int r1 = 0, r2=mat.length-1,c1=0,c2=mat[0].length-1;
+        ArrayList<Integer> res = new ArrayList<>();
+        int count = 0;
+        while(count != (n*m)) {
+            for(int j=c1;j<=c2;j++) {
+                res.add(mat[c1][j]);
+                count++;
+            }
+            if(count == n*m) return res;
+            r1++;
+            for(int j=r1;j<=r2;j++) {
+                res.add(mat[j][c2]);
+                count++;
+            }
+            if(count == n*m) return res;
+            c2--;
+            for(int j=c2;j>=c1;j--) {
+                res.add(mat[r2][j]);
+                count++;
+            }
+            if(count == n*m) return res;
+            r2--;
+            for(int j=r2;j>=r1;j--) {
+                res.add(mat[j][c1]);
+                count++;
+            }
+            c1++;
+        }
+        return res;
+    }
+}
